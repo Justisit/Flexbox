@@ -1,0 +1,1316 @@
+
+
+/*!
+ * CSS Flexbox
+ * zhangyz
+ * Flex是Flexible Box的缩写
+ * 参考：阮一峰的Flex 布局教程http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html
+ * 参考：CSS box-flex属性，然后弹性盒子模型简介http://www.zhangxinxu.com/wordpress/?p=1338
+ * 部分代码参考Bootstrap v3.3.5 (http://getbootstrap.com)
+ */
+
+/*------reset------*/
+
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+	display:block
+}
+a {
+  background-color: transparent;
+}
+a:active,
+a:hover {
+  outline: 0;
+}
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.flex:before, .flex-h:before, .flex-horizontal:before ,.flex-row:before, .flex-v:before, .flex-vertical:before ,.flex-column:before, .container:before, .row:before {
+  content: " ";
+  display: -webkit-flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  display: box;
+  width: 0;
+  height: 0;
+  font-size: 0;
+}
+.flex:after, .flex-h:after, .flex-horizontal:after ,.flex-row:after, .flex-v:after, .flex-vertical:after, .flex-column:after,  .container:after, .row:after {
+  content: " ";
+  display: table;
+  clear: both;
+}
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+/*------container容器的属性------*/
+.flex{
+  display: -webkit-flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  display: box;
+}
+.flex {
+  display: -webkit-flex;/* 新版本语法: Chrome 21+ */
+  display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+  display: -moz-flex;
+  display: -moz-box; /* 老版本语法: Firefox (buggy) */
+  display: -ms-flexbox; /* 混合版本语法: IE 10 */
+  display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+}
+.flex-h, .flex-horizontal ,.flex-row {
+  display: -webkit-flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  display: box;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+}
+.flex-v, .flex-vertical  ,.flex-column {
+  display: -webkit-flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  display: box;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+}
+.flex-h-r, .flex-horizontal-r ,.flex-row-r, .flex-h-reverse, .flex-horizontal-reverse ,.flex-row-reverse {
+  display: -webkit-flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  display: box;
+  -webkit-flex-direction: row-reverse;
+  -moz-flex-direction: row-reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+}
+.flex-v-r, .flex-vertical-r  ,.flex-column-r, .flex-v-reverse, .flex-vertical-reverse  ,.flex-column-reverse {
+  display: -webkit-flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  display: box;
+  -webkit-flex-direction: column-reverse;
+  -moz-flex-direction: column-reverse;
+  -ms-flex-direction: column-reverse;
+  flex-direction: column-reverse;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+}
+.flex-nowrap, .flex-nw , .nowrap {
+  -webkit-flex-wrap: nowrap;
+  -moz-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-box-lines: single;
+  -moz-box-lines: single;
+  -ms-box-lines: single;
+  box-lines: single;
+}
+.flex-wrap, .flex-w , .wrap {
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -ms-box-lines: multiple;
+  box-lines: multiple;
+}
+.flex-wrap-reverse, .flex-nwr , .wrap-reverse {
+  -webkit-flex-wrap: wrap-reverse;
+  -moz-flex-wrap: wrap-reverse;
+  -ms-flex-wrap: wrap-reverse;
+  flex-wrap: wrap-reverse;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: mulpitle;
+  -ms-box-lines: multiple;
+  box-lines: multiple;
+}
+.flex-start, .flex-left, .flex-l{
+  -webkit-justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  -ms-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-box-pack: start;
+  -moz-box-pack: start;
+  -ms-box-pack: start;
+}
+.flex-end, .flex-right, .flex-r{
+  -webkit-justify-content: flex-end;
+  -moz-justify-content: flex-end;
+  -ms-justify-content: flex-end;
+  justify-content: flex-end;
+  -webkit-box-pack: end;
+  -moz-box-pack: end;
+  -ms-box-pack: end; 
+}
+.flex-center, .flex-c, .flex-h-c, .flex-horizontal-center, .flex-align-center {
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-box-pack: center; 
+}
+.flex-between, .flex-sb, .flex-space-between {
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-box-pack:justify;
+  -moz-flex-pack:justify;
+  -ms-box-pack:justify;
+  box-pack:justify;
+}
+.flex-around, .flex-sa, .flex-space-around {
+  -webkit-justify-content: space-around;
+  -moz-justify-content: space-around;
+  -ms-justify-content: space-around;
+  justify-content: space-around;
+  -ms-flex-box: distribute;
+}
+/*space-around 不在旧标准属性里 解决方案是使用space-between即justify 加给first-child last-child添加margin*/
+.flex-top, .flex-tp, .flex-t {
+  -webkit-align-items: flex-start;
+  -moz-align-items: flex-start;
+  -ms-align-items: flex-start;
+  align-items: flex-start;
+  -webkit-box-align: start;
+  -moz-box-align: start;
+  -ms-box-align: start;
+}
+.flex-middle, .flex-m, .flex-vertical-center, .flex-v-c, .flex-vertical-middle, .flex-v-m {
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-box-align: center;
+}
+.flex-bottom, .flex-bm, .flex-b {
+  -webkit-align-items: flex-end;
+  -moz-align-items: flex-end;
+  -ms-align-items: flex-end;
+  align-items: flex-end;
+  -webkit-box-align: end;
+  -moz-box-align: end;
+  -ms-box-align: end;
+}
+.flex-baseline, .flex-bl {
+  -webkit-align-items: baseline;
+  -moz-align-items: baseline;
+  -ms-align-items: baseline;
+  align-items: baseline;
+  -webkit-box-align: baseline;
+  -moz-box-align: baseline;
+  -ms-box-align: baseline;
+}
+.flex-stretch, .flex-sh {
+  -webkit-align-items: stretch;
+  -moz-align-items: stretch;
+  -ms-align-items: stretch;
+  align-items: stretch;
+  -webkit-box-align: stretch;
+  -moz-box-align: stretch;
+  -ms-box-align: stretch;
+}
+/*------item的属性------*/
+/*order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0*/
+.flex-order-0 {
+  -webkit-order: 0;
+  -moz-order: 0;
+  -ms-order: 0;	
+  order: 0;
+  -webkit-ordinal-group: 0;
+  -moz-ordinal-group: 0;
+  -ms-ordinal-group: 0;	
+}
+.flex-order--1{
+  -webkit-order: -1;
+  -moz-order: -1;
+  -ms-order: -1;	
+  order: -1;
+  -webkit-ordinal-group: -1;
+  -moz-ordinal-group: -1;
+  -ms-ordinal-group: -1;	
+}
+
+.flex-order-1{
+  -webkit-order: 1;
+  -moz-order: 1;
+  -ms-order: 1;	
+  order: 1;
+  -webkit-ordinal-group: 1;
+  -moz-ordinal-group: 1;
+  -ms-ordinal-group: 1;	
+}
+.flex-order-2 {
+  -webkit-order: 2;
+  -moz-order: 2;
+  -ms-order: 2;	
+  order: 2;
+  -webkit-ordinal-group: 2;
+  -moz-ordinal-group: 2;
+  -ms-ordinal-group: 2;	
+}
+.flex-order-3 {
+  -webkit-order: 3;
+  -moz-order: 3;
+  -ms-order: 3;	
+  order: 3;
+  -webkit-ordinal-group: 3;
+  -moz-ordinal-group: 3;
+  -ms-ordinal-group: 3;	
+}
+.flex-order-4 {
+  -webkit-order: 4;
+  -moz-order: 4;
+  -ms-order: 4;	
+  order: 4;
+  -webkit-ordinal-group: 4;
+  -moz-ordinal-group: 4;
+  -ms-ordinal-group: 4;	
+}
+.flex-order-5 {
+  -webkit-order: 5;
+  -moz-order: 5;
+  -ms-order: 5;	
+  order: 5;
+  -webkit-ordinal-group: 5;
+  -moz-ordinal-group: 5;
+  -ms-ordinal-group: 5;	
+}
+.flex-order-6 {
+  -webkit-order: 6;
+  -moz-order: 6;
+  -ms-order: 6;	
+  order: 6;
+  -webkit-ordinal-group: 6;
+  -moz-ordinal-group: 6;
+  -ms-ordinal-group: 6;	
+}
+/*flex-grow属性定义项目的放大比例，默认为0(box-flex 是否允许子元素伸缩默认值为0不伸缩)，即如果存在剩余空间，也不放大。注意flex-grow / box-flex只是动态分配父元素的剩余空间，而不是整个父元素的空间，即除内容外所剩余下来的宽度*/
+.flex-grow-0 {
+  -webkit-flex-grow: 0;
+  -moz-flex-grow: 0;
+  -webkit-flex-grow: 0;
+  flex-grow: 0;	
+  -webkit-box-flex: 0.0;
+  -moz-box-flex: 0.0;
+}
+.flex-grow-1{
+  -webkit-flex-grow: 1;
+  -moz-flex-grow: 1;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;	
+  -webkit-box-flex: 1.0;
+  -moz-box-flex: 1.0;
+}
+.flex-grow-2{
+  -webkit-flex-grow: 2;
+  -moz-flex-grow: 2;
+  -webkit-flex-grow: 2;
+  flex-grow: 2;	
+  -webkit-box-flex: 2.0;
+  -moz-box-flex: 2.0;
+}
+.flex-grow-3{
+  -webkit-flex-grow: 3;
+  -moz-flex-grow: 3;
+  -webkit-flex-grow: 3;
+  flex-grow: 3;	
+  -webkit-box-flex: 3.0;
+  -moz-box-flex: 3.0;
+}
+.flex-grow-4{
+  -webkit-flex-grow: 4;
+  -moz-flex-grow: 4;
+  -webkit-flex-grow: 4;
+  flex-grow: 4;	
+  -webkit-box-flex: 4.0;
+  -moz-box-flex: 4.0;
+}
+/*flex-shrink属性定义了项目的缩小比例，默认为1(box-flex 是否允许子元素伸缩默认值为0不伸缩)，即如果空间不足，该项目将缩小。如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩,小负值对该属性无效。*/
+.flex-no-shrink, .flex-shrink-0, .flex-noshrink {
+  -webkit-flex-shrink: 0;
+  -moz-flex-shrink: 0;
+  -webkit-flex-shrink: 0;
+  flex-shrink: : 0;	
+  -webkit-box-flex: 0.0;
+  -moz-box-flex: 0.0;
+}
+.flex-shrink-1, .flex-normal {
+  -webkit-flex-shrink: 1;
+  -moz-flex-shrink: 1;
+  -webkit-flex-shrink: 1;
+  flex-shrink: : 1;	
+  -webkit-box-flex: 1.0;
+  -moz-box-flex: 1.0;
+}
+.flex-shrink-2 {
+  -webkit-flex-shrink: 2;
+  -moz-flex-shrink: 2;
+  -webkit-flex-shrink: 2;
+  flex-shrink: : 2;	
+  -webkit-box-flex: 2.0;
+  -moz-box-flex: 2.0;
+}
+.flex-shrink-3 {
+  -webkit-flex-shrink: 3;
+  -moz-flex-shrink: 3;
+  -webkit-flex-shrink: 3;
+  flex-shrink: : 3;	
+  -webkit-box-flex: 3.0;
+  -moz-box-flex: 3.0;
+}.flex-shrink-4 {
+  -webkit-flex-shrink: 4;
+  -moz-flex-shrink: 4;
+  -webkit-flex-shrink: 4;
+  flex-shrink: : 4;	
+  -webkit-box-flex: 4.0;
+  -moz-box-flex: 4.0;
+}
+/*align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto*/
+.flex-top-alone, .flex-start-alone {
+  -webkit-align-self: flex-start;
+  -moz-align-self: flex-start;
+  -ms-align-self: flex-start;
+  align-self: flex-start;  
+}
+.flex-bottom-alone, .flex-end-alone {
+  -webkit-align-self: flex-end;
+  -moz-align-self: flex-end;
+  -ms-align-self: flex-end;
+  align-self: flex-end;
+}
+.flex-middle-alone {
+  -webkit-align-self: center;
+  -moz-align-self: center;
+  -ms-align-self: center;
+  align-self: center;
+}
+.flex-baseline-alone, .flex-bl-alone {
+  -webkit-align-self: baseline;
+  -moz-align-self: baseline;
+  -ms-align-self: baseline;
+  align-self: baseline;
+}
+.flex-stretch-alone, .flex-sh-alone {
+  -webkit-align-self: stretch;
+  -moz-align-self: stretch;
+  -ms-align-self: stretch;
+  align-self: stretch;
+}
+.flex-left-alone {
+  margin-right: auto;
+}
+.flex-right-alone {
+  margin-left: auto;
+}
+/*------栅格系统------*/
+.container {
+padding-right: 15px;
+padding-left: 15px;
+margin-right: auto;
+margin-left: auto;
+}
+.row {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.flex-item-top {
+  margin-bottom: auto;
+}
+.flex-item-bottom {
+  margin-top: auto;
+}
+.flex-item-left {
+  margin-right: auto;
+}
+.flex-item-right {
+  margin-left: auto;
+}
+.flex-xs-1, .flex-sm-1, .flex-md-1, .flex-lg-1, .flex-xs-2, .flex-sm-2, .flex-md-2, .flex-lg-2, .flex-xs-3, .flex-sm-3, .flex-md-3, .flex-lg-3, .flex-xs-4, .flex-sm-4, .flex-md-4, .flex-lg-4, .flex-xs-5, .flex-sm-5, .flex-md-5, .flex-lg-5, .flex-xs-6, .flex-sm-6, .flex-md-6, .flex-lg-6, .flex-xs-7, .flex-sm-7, .flex-md-7, .flex-lg-7, .flex-xs-8, .flex-sm-8, .flex-md-8, .flex-lg-8, .flex-xs-9, .flex-sm-9, .flex-md-9, .flex-lg-9, .flex-xs-10, .flex-sm-10, .flex-md-10, .flex-lg-10, .flex-xs-11, .flex-sm-11, .flex-md-11, .flex-lg-11, .flex-xs-12, .flex-sm-12, .flex-md-12, .flex-lg-12 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.flex-xs-1, .flex-xs-2, .flex-xs-3, .flex-xs-4, .flex-xs-5, .flex-xs-6, .flex-xs-7, .flex-xs-8, .flex-xs-9, .flex-xs-10, .flex-xs-11, .flex-xs-12 {
+  float: left;
+}
+.flex-xs-12 {
+  width: 100%;
+}
+.flex-xs-11 {
+  width: 91.66666667%;
+}
+.flex-xs-10 {
+  width: 83.33333333%;
+}
+.flex-xs-9 {
+  width: 75%;
+}
+.flex-xs-8 {
+  width: 66.66666667%;
+}
+.flex-xs-7 {
+  width: 58.33333333%;
+}
+.flex-xs-6 {
+  width: 50%;
+}
+.flex-xs-5 {
+  width: 41.66666667%;
+}
+.flex-xs-4 {
+  width: 33.33333333%;
+}
+.flex-xs-3 {
+  width: 25%;
+}
+.flex-xs-2 {
+  width: 16.66666667%;
+}
+.flex-xs-1 {
+  width: 8.33333333%;
+}
+.flex-xs-1_2 {
+  width: 4.16666667%;
+}
+.flex-xs-pull-12 {
+  right: 100%;
+}
+.flex-xs-pull-11 {
+  right: 91.66666667%;
+}
+.flex-xs-pull-10 {
+  right: 83.33333333%;
+}
+.flex-xs-pull-9 {
+  right: 75%;
+}
+.flex-xs-pull-8 {
+  right: 66.66666667%;
+}
+.flex-xs-pull-7 {
+  right: 58.33333333%;
+}
+.flex-xs-pull-6 {
+  right: 50%;
+}
+.flex-xs-pull-5 {
+  right: 41.66666667%;
+}
+.flex-xs-pull-4 {
+  right: 33.33333333%;
+}
+.flex-xs-pull-3 {
+  right: 25%;
+}
+.flex-xs-pull-2 {
+  right: 16.66666667%;
+}
+.flex-xs-pull-1 {
+  right: 8.33333333%;
+}
+.flex-xs-pull-0 {
+  right: auto;
+}
+.flex-xs-push-12 {
+  left: 100%;
+}
+.flex-xs-push-11 {
+  left: 91.66666667%;
+}
+.flex-xs-push-10 {
+  left: 83.33333333%;
+}
+.flex-xs-push-9 {
+  left: 75%;
+}
+.flex-xs-push-8 {
+  left: 66.66666667%;
+}
+.flex-xs-push-7 {
+  left: 58.33333333%;
+}
+.flex-xs-push-6 {
+  left: 50%;
+}
+.flex-xs-push-5 {
+  left: 41.66666667%;
+}
+.flex-xs-push-4 {
+  left: 33.33333333%;
+}
+.flex-xs-push-3 {
+  left: 25%;
+}
+.flex-xs-push-2 {
+  left: 16.66666667%;
+}
+.flex-xs-push-1 {
+  left: 8.33333333%;
+}
+.flex-xs-push-0 {
+  left: auto;
+}
+.flex-xs-offset-12 {
+  margin-left: 100%;
+}
+.flex-xs-offset-11 {
+  margin-left: 91.66666667%;
+}
+.flex-xs-offset-10 {
+  margin-left: 83.33333333%;
+}
+.flex-xs-offset-9 {
+  margin-left: 75%;
+}
+.flex-xs-offset-8 {
+  margin-left: 66.66666667%;
+}
+.flex-xs-offset-7 {
+  margin-left: 58.33333333%;
+}
+.flex-xs-offset-6 {
+  margin-left: 50%;
+}
+.flex-xs-offset-5 {
+  margin-left: 41.66666667%;
+}
+.flex-xs-offset-4 {
+  margin-left: 33.33333333%;
+}
+.flex-xs-offset-3 {
+  margin-left: 25%;
+}
+.flex-xs-offset-2 {
+  margin-left: 16.66666667%;
+}
+.flex-xs-offset-1 {
+  margin-left: 8.33333333%;
+}
+.flex-xs-offset-0 {
+  margin-left: 0;
+}
+.flex-xs-top {
+  margin-bottom: auto;
+}
+.flex-xs-bottom {
+  margin-top: auto;
+}
+.flex-xs-left{
+  margin-right: auto;
+}
+.flex-xs-right{
+  margin-left: auto;
+}
+@media (min-width: 768px) {
+  .flex-sm-1, .flex-sm-2, .flex-sm-3, .flex-sm-4, .flex-sm-5, .flex-sm-6, .flex-sm-7, .flex-sm-8, .flex-sm-9, .flex-sm-10, .flex-sm-11, .flex-sm-12 {
+    float: left;
+  }
+  .flex-sm-12 {
+    width: 100%;
+  }
+  .flex-sm-11 {
+    width: 91.66666667%;
+  }
+  .flex-sm-10 {
+    width: 83.33333333%;
+  }
+  .flex-sm-9 {
+    width: 75%;
+  }
+  .flex-sm-8 {
+    width: 66.66666667%;
+  }
+  .flex-sm-7 {
+    width: 58.33333333%;
+  }
+  .flex-sm-6 {
+    width: 50%;
+  }
+  .flex-sm-5 {
+    width: 41.66666667%;
+  }
+  .flex-sm-4 {
+    width: 33.33333333%;
+  }
+  .flex-sm-3 {
+    width: 25%;
+  }
+  .flex-sm-2 {
+    width: 16.66666667%;
+  }
+  .flex-sm-1 {
+    width: 8.33333333%;
+  }
+  .flex-sm-1_2 {
+  width: 4.16666667%;
+  }
+  .flex-sm-pull-12 {
+    right: 100%;
+  }
+  .flex-sm-pull-11 {
+    right: 91.66666667%;
+  }
+  .flex-sm-pull-10 {
+    right: 83.33333333%;
+  }
+  .flex-sm-pull-9 {
+    right: 75%;
+  }
+  .flex-sm-pull-8 {
+    right: 66.66666667%;
+  }
+  .flex-sm-pull-7 {
+    right: 58.33333333%;
+  }
+  .flex-sm-pull-6 {
+    right: 50%;
+  }
+  .flex-sm-pull-5 {
+    right: 41.66666667%;
+  }
+  .flex-sm-pull-4 {
+    right: 33.33333333%;
+  }
+  .flex-sm-pull-3 {
+    right: 25%;
+  }
+  .flex-sm-pull-2 {
+    right: 16.66666667%;
+  }
+  .flex-sm-pull-1 {
+    right: 8.33333333%;
+  }
+  .flex-sm-pull-0 {
+    right: auto;
+  }
+  .flex-sm-push-12 {
+    left: 100%;
+  }
+  .flex-sm-push-11 {
+    left: 91.66666667%;
+  }
+  .flex-sm-push-10 {
+    left: 83.33333333%;
+  }
+  .flex-sm-push-9 {
+    left: 75%;
+  }
+  .flex-sm-push-8 {
+    left: 66.66666667%;
+  }
+  .flex-sm-push-7 {
+    left: 58.33333333%;
+  }
+  .flex-sm-push-6 {
+    left: 50%;
+  }
+  .flex-sm-push-5 {
+    left: 41.66666667%;
+  }
+  .flex-sm-push-4 {
+    left: 33.33333333%;
+  }
+  .flex-sm-push-3 {
+    left: 25%;
+  }
+  .flex-sm-push-2 {
+    left: 16.66666667%;
+  }
+  .flex-sm-push-1 {
+    left: 8.33333333%;
+  }
+  .flex-sm-push-0 {
+    left: auto;
+  }
+  .flex-sm-offset-12 {
+    margin-left: 100%;
+  }
+  .flex-sm-offset-11 {
+    margin-left: 91.66666667%;
+  }
+  .flex-sm-offset-10 {
+    margin-left: 83.33333333%;
+  }
+  .flex-sm-offset-9 {
+    margin-left: 75%;
+  }
+  .flex-sm-offset-8 {
+    margin-left: 66.66666667%;
+  }
+  .flex-sm-offset-7 {
+    margin-left: 58.33333333%;
+  }
+  .flex-sm-offset-6 {
+    margin-left: 50%;
+  }
+  .flex-sm-offset-5 {
+    margin-left: 41.66666667%;
+  }
+  .flex-sm-offset-4 {
+    margin-left: 33.33333333%;
+  }
+  .flex-sm-offset-3 {
+    margin-left: 25%;
+  }
+  .flex-sm-offset-2 {
+    margin-left: 16.66666667%;
+  }
+  .flex-sm-offset-1 {
+    margin-left: 8.33333333%;
+  }
+  .flex-sm-offset-0 {
+    margin-left: 0;
+  }
+  .flex-sm-top {
+    margin-bottom: auto;
+  }
+  .flex-sm-bottom {
+    margin-top: auto;
+  }
+  .flex-sm-left {
+    margin-right: auto;
+  }
+  .flex-sm-right {
+    margin-left: auto;
+  }
+}
+@media (min-width: 992px) {
+  .flex-md-1, .flex-md-2, .flex-md-3, .flex-md-4, .flex-md-5, .flex-md-6, .flex-md-7, .flex-md-8, .flex-md-9, .flex-md-10, .flex-md-11, .flex-md-12 {
+    float: left;
+  }
+  .flex-md-12 {
+    width: 100%;
+  }
+  .flex-md-11 {
+    width: 91.66666667%;
+  }
+  .flex-md-10 {
+    width: 83.33333333%;
+  }
+  .flex-md-9 {
+    width: 75%;
+  }
+  .flex-md-8 {
+    width: 66.66666667%;
+  }
+  .flex-md-7 {
+    width: 58.33333333%;
+  }
+  .flex-md-6 {
+    width: 50%;
+  }
+  .flex-md-5 {
+    width: 41.66666667%;
+  }
+  .flex-md-4 {
+    width: 33.33333333%;
+  }
+  .flex-md-3 {
+    width: 25%;
+  }
+  .flex-md-2 {
+    width: 16.66666667%;
+  }
+  .flex-md-1 {
+    width: 8.33333333%;
+  }
+  .flex-md-1_2 {
+    width: 4.16666667%;
+  }
+  .flex-md-pull-12 {
+    right: 100%;
+  }
+  .flex-md-pull-11 {
+    right: 91.66666667%;
+  }
+  .flex-md-pull-10 {
+    right: 83.33333333%;
+  }
+  .flex-md-pull-9 {
+    right: 75%;
+  }
+  .flex-md-pull-8 {
+    right: 66.66666667%;
+  }
+  .flex-md-pull-7 {
+    right: 58.33333333%;
+  }
+  .flex-md-pull-6 {
+    right: 50%;
+  }
+  .flex-md-pull-5 {
+    right: 41.66666667%;
+  }
+  .flex-md-pull-4 {
+    right: 33.33333333%;
+  }
+  .flex-md-pull-3 {
+    right: 25%;
+  }
+  .flex-md-pull-2 {
+    right: 16.66666667%;
+  }
+  .flex-md-pull-1 {
+    right: 8.33333333%;
+  }
+  .flex-md-pull-0 {
+    right: auto;
+  }
+  .flex-md-push-12 {
+    left: 100%;
+  }
+  .flex-md-push-11 {
+    left: 91.66666667%;
+  }
+  .flex-md-push-10 {
+    left: 83.33333333%;
+  }
+  .flex-md-push-9 {
+    left: 75%;
+  }
+  .flex-md-push-8 {
+    left: 66.66666667%;
+  }
+  .flex-md-push-7 {
+    left: 58.33333333%;
+  }
+  .flex-md-push-6 {
+    left: 50%;
+  }
+  .flex-md-push-5 {
+    left: 41.66666667%;
+  }
+  .flex-md-push-4 {
+    left: 33.33333333%;
+  }
+  .flex-md-push-3 {
+    left: 25%;
+  }
+  .flex-md-push-2 {
+    left: 16.66666667%;
+  }
+  .flex-md-push-1 {
+    left: 8.33333333%;
+  }
+  .flex-md-push-0 {
+    left: auto;
+  }
+  .flex-md-offset-12 {
+    margin-left: 100%;
+  }
+  .flex-md-offset-11 {
+    margin-left: 91.66666667%;
+  }
+  .flex-md-offset-10 {
+    margin-left: 83.33333333%;
+  }
+  .flex-md-offset-9 {
+    margin-left: 75%;
+  }
+  .flex-md-offset-8 {
+    margin-left: 66.66666667%;
+  }
+  .flex-md-offset-7 {
+    margin-left: 58.33333333%;
+  }
+  .flex-md-offset-6 {
+    margin-left: 50%;
+  }
+  .flex-md-offset-5 {
+    margin-left: 41.66666667%;
+  }
+  .flex-md-offset-4 {
+    margin-left: 33.33333333%;
+  }
+  .flex-md-offset-3 {
+    margin-left: 25%;
+  }
+  .flex-md-offset-2 {
+    margin-left: 16.66666667%;
+  }
+  .flex-md-offset-1 {
+    margin-left: 8.33333333%;
+  }
+  .flex-md-offset-0 {
+    margin-left: 0;
+  }
+.flex-md-top {
+  margin-bottom: auto;
+}
+.flex-md-bottom {
+  margin-top: auto;
+}
+.flex-md-left {
+    margin-right: auto;
+  }
+.flex-md-right {
+    margin-left: auto;
+  }
+}
+@media (min-width: 1200px) {
+  .flex-lg-1, .flex-lg-2, .flex-lg-3, .flex-lg-4, .flex-lg-5, .flex-lg-6, .flex-lg-7, .flex-lg-8, .flex-lg-9, .flex-lg-10, .flex-lg-11, .flex-lg-12 {
+    float: left;
+  }
+  .flex-lg-12 {
+    width: 100%;
+  }
+  .flex-lg-11 {
+    width: 91.66666667%;
+  }
+  .flex-lg-10 {
+    width: 83.33333333%;
+  }
+  .flex-lg-9 {
+    width: 75%;
+  }
+  .flex-lg-8 {
+    width: 66.66666667%;
+  }
+  .flex-lg-7 {
+    width: 58.33333333%;
+  }
+  .flex-lg-6 {
+    width: 50%;
+  }
+  .flex-lg-5 {
+    width: 41.66666667%;
+  }
+  .flex-lg-4 {
+    width: 33.33333333%;
+  }
+  .flex-lg-3 {
+    width: 25%;
+  }
+  .flex-lg-2 {
+    width: 16.66666667%;
+  }
+  .flex-lg-1 {
+    width: 8.33333333%;
+  }
+  .flex-lg-1_2 {
+    width: 4.16666666%;
+  }
+  .flex-lg-pull-12 {
+    right: 100%;
+  }
+  .flex-lg-pull-11 {
+    right: 91.66666667%;
+  }
+  .flex-lg-pull-10 {
+    right: 83.33333333%;
+  }
+  .flex-lg-pull-9 {
+    right: 75%;
+  }
+  .flex-lg-pull-8 {
+    right: 66.66666667%;
+  }
+  .flex-lg-pull-7 {
+    right: 58.33333333%;
+  }
+  .flex-lg-pull-6 {
+    right: 50%;
+  }
+  .flex-lg-pull-5 {
+    right: 41.66666667%;
+  }
+  .flex-lg-pull-4 {
+    right: 33.33333333%;
+  }
+  .flex-lg-pull-3 {
+    right: 25%;
+  }
+  .flex-lg-pull-2 {
+    right: 16.66666667%;
+  }
+  .flex-lg-pull-1 {
+    right: 8.33333333%;
+  }
+  .flex-lg-pull-0 {
+    right: auto;
+  }
+  .flex-lg-push-12 {
+    left: 100%;
+  }
+  .flex-lg-push-11 {
+    left: 91.66666667%;
+  }
+  .flex-lg-push-10 {
+    left: 83.33333333%;
+  }
+  .flex-lg-push-9 {
+    left: 75%;
+  }
+  .flex-lg-push-8 {
+    left: 66.66666667%;
+  }
+  .flex-lg-push-7 {
+    left: 58.33333333%;
+  }
+  .flex-lg-push-6 {
+    left: 50%;
+  }
+  .flex-lg-push-5 {
+    left: 41.66666667%;
+  }
+  .flex-lg-push-4 {
+    left: 33.33333333%;
+  }
+  .flex-lg-push-3 {
+    left: 25%;
+  }
+  .flex-lg-push-2 {
+    left: 16.66666667%;
+  }
+  .flex-lg-push-1 {
+    left: 8.33333333%;
+  }
+  .flex-lg-push-0 {
+    left: auto;
+  }
+  .flex-lg-offset-12 {
+    margin-left: 100%;
+  }
+  .flex-lg-offset-11 {
+    margin-left: 91.66666667%;
+  }
+  .flex-lg-offset-10 {
+    margin-left: 83.33333333%;
+  }
+  .flex-lg-offset-9 {
+    margin-left: 75%;
+  }
+  .flex-lg-offset-8 {
+    margin-left: 66.66666667%;
+  }
+  .flex-lg-offset-7 {
+    margin-left: 58.33333333%;
+  }
+  .flex-lg-offset-6 {
+    margin-left: 50%;
+  }
+  .flex-lg-offset-5 {
+    margin-left: 41.66666667%;
+  }
+  .flex-lg-offset-4 {
+    margin-left: 33.33333333%;
+  }
+  .flex-lg-offset-3 {
+    margin-left: 25%;
+  }
+  .flex-lg-offset-2 {
+    margin-left: 16.66666667%;
+  }
+  .flex-lg-offset-1 {
+    margin-left: 8.33333333%;
+  }
+  .flex-lg-offset-0 {
+    margin-left: 0;
+  }
+  .flex-lg-top {
+    margin-bottom: auto;
+  }
+  .flex-lg-bottom {
+    margin-top: auto;
+  }
+  .flex-lg-left {
+    margin-right: auto;
+  }
+  .flex-lg-right {
+    margin-left: auto;
+  }
+}
+/*清除浮动*/
+/*.clearfix:before, .clearfix:after {
+content: ".";
+display: block;
+height: 0;
+clear: both;
+visibility: hidden;
+}*/
+.clearfix {zoom: 1;}/* IE<8*/
+.clearfix:before, .clearfix:after {
+display: table;
+content: "";
+height: 0;
+clear: both;
+visibility: hidden;
+}
+/*一些样式组件*/
+/*遮罩层*/
+.shadow{
+    display: none;
+    width: 100%;
+    width: 100vw;
+    height: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,.5);
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+.shadow-show{
+  display: inline;
+}
+/*图片或弹出层元素居中显示
+*<div class=".shadow">
+*    <div class="dialog-box">...</div>
+*</div> 
+*/
+.dialog-box{
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
+  position: relative;
+}
+
+
+
+
+
+/*固定的底栏
+*有时，页面内容太少，无法占满一屏的高度，底栏就会抬高到页面的中间。这时可以采用Flex布局，让底栏总是出现在页面的底部。
+*来自阮一峰的网络日志http://www.ruanyifeng.com/blog/2015/07/flex-examples.html
+* <body class="Site">
+* <header>...</header>
+*  <main class="Site-content">...</main>
+* <footer>...</footer>
+* </body>
+*/
+.site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.site-content {
+  flex: 1;
+}
+.full-horizontal, .full-h {
+  width: 100%;
+  height: auto;
+}
+.full-vertical, .full-v {
+  width: auto;
+  height: 100%
+}
+/*元素两边与四边贴合屏幕（即视口：浏览器的可视区域）*/
+.full-vh-max {
+  width: 100vmax;
+}
+.full-vh-min {
+  width: 100vmin;
+}
+.full-vv-max {
+  height: 100vmax;
+}
+.full-vv-min {
+  height: 100vmin;
+}
+@media (min-width: 768px) {
+  .container {
+  width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+@media (max-width: 767px) {
+ .flex-xs-hide {
+    display: none !important;
+  }
+  .flex-xs-show {
+  display: -webkit-flex !important;
+  display: -webkit-box !important; 
+  display: -moz-flex !important;
+  display: -moz-box !important; 
+  display: -ms-flexbox !important; 
+  display: flex !important; 
+  }
+}
+@media (max-width: 991px) {
+ .flex-sm-hide {
+    display: none !important;
+  }
+  .flex-sm-show {
+  display: -webkit-flex !important;
+  display: -webkit-box !important; 
+  display: -moz-flex !important;
+  display: -moz-box !important; 
+  display: -ms-flexbox !important; 
+  display: flex !important; 
+  }
+}
+@media (max-width: 1199px) {
+ .flex-md-hide {
+    display: none !important;
+  }
+  .flex-md-show {
+  display: -webkit-flex !important;
+  display: -webkit-box !important; 
+  display: -moz-flex !important;
+  display: -moz-box !important; 
+  display: -ms-flexbox !important; 
+  display: flex !important; 
+  }
+}
+@media (min-width: 1200px) {
+ .flex-lg-hide {
+    display: none !important;
+  }
+  .flex-lg-show {
+  display: -webkit-flex !important;
+  display: -webkit-box !important; 
+  display: -moz-flex !important;
+  display: -moz-box !important; 
+  display: -ms-flexbox !important; 
+  display: flex !important; 
+  }
+}
+

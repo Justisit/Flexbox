@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0">
+	<meta name="description" content="Flexbox - 简洁、直观、强悍、移动设备优先的前端开发框架，让web开发更迅速、简单。">
+	<meta name="keywords" content="HTML, CSS, JS, JavaScript, Flexlayout,弹性布局,Flex">
+	<meta name="author" content="zhangyz">
+	<meta name="author" content="张耀中 <loveyaozhong@163.com>">
+	<title>Flexbox-layout弹性布局</title>
+	<link rel="stylesheet" href="css/flex-box.css">
+	<link rel="stylesheet" href="css/basic-style.css">
+	<link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/fontawesome/4.4.0/css/font-awesome.min.css">
+	<script src="js/jquery-3.1.0.min.js"></script>
+	<script>
+		$(document).ready(function () {            
+            			$(window).scroll(function () {	
+            				var sT = $(window).scrollTop();
+			 	if ( sT <= 360) {
+                   		   	     $('ul.nav-sidebar').css({position: '',top: ''});
+                   		   	     $('.nav-sidebar li').siblings().removeClass('li-active')
+              			}else if(sT < 500){
+              			     $('ul.nav-sidebar').css({position:'fixed',top:'60px'});
+                   		   	     $('.nav-sidebar li').eq(0).addClass('li-active').siblings().removeClass('li-active');
+              			}else if(sT < 900){
+              			     $('.nav-sidebar li').eq(1).addClass('li-active').siblings().removeClass('li-active');
+              			}else if(sT < 6650) {
+                 		  	     $('.nav-sidebar li').eq(2).addClass('li-active').siblings().removeClass('li-active');
+              		  	}else if(sT < 6700){
+                		 	     $('.nav-sidebar li').eq(3).addClass('li-active').siblings().removeClass('li-active');
+              		 	}else if(sT < 7500){
+                		 	     $('.nav-sidebar li').eq(4).addClass('li-active').siblings().removeClass('li-active');
+              		 	}else if(sT < 10000){
+                		 	     $('.nav-sidebar li').eq(5).addClass('li-active').siblings().removeClass('li-active');
+              		 	}
+          			  });
+       		 }); 
+	</script>
+</head>
+<body class="site">
+	<header class="header-style flex flex-row flex-middle">
+		<h1 class="logo"><a href="http://github.com/Justisit/flex-box">Flexbox</a></h1>
+		<small class="subtitle">Flex-box用于开发基于弹性盒模型的响应式布局、移动设备优先的 WEB 项目</small>
+		<div class="git-link">
+			<a href="http://github.com/Justisit/Flexbox"><i class="fa fa-github fa-lg"></i>Github</a>
+		</div>
+	</header>
+	<main class="site-content">
+		<!-- section1 -->
+		<section id="sec1">
+			<div class="flex flex-center bg-color"><img class="flex-box-img" src="images/imgcssflex.jpg"></div>
+		</section>
+		<!-- section2 -->
+		<section id="sec2">
+			<div class="container">
+				<div class="row flex-row">
+					<div class="flex-md-9">
+						<div class="main-docs-section">
+							<div class="panel">
+								<h2 id="tab_1">概述</h2>
+								<p>Flex布局，可以简便、完整、响应式地实现各种页面布局</p>
+								<ol>
+									<li>Flex布局将成为未来布局的首选方案
+										<p>已经得到了所有浏览器的支持，<br>听说bootstrap 4.0要加入Flex弹性布局哟！</p>
+									</li>
+									<li>Flexbox知识仅仅将css flex复杂的属性写入更加简单、易用更加语义化的类中，一点都不神秘；</li>
+									<li>Flexbox基于[容器](container)和[栅格]来布局与bootstrap几乎一致；</li>
+									<li>Flexbox  Github地址：<a href="http://github.com/Justisit/Flexbox" target="_block">http://github.com/Justisit/Flexbox</a><a class="btn-a" href="Flexbox.css">直接下载</a></li>
+									<li>深入了解css弹性布局将对您使用Flexbox更加顺手、灵活<br>学习Flexbox可以很轻松的实现很多复杂的布局
+									</li>
+									<li>Flexbox是在学习的时候自己做得，可能有一些不如意的地方，希望大家给予鼓励和支持</li>
+								</ol>
+							</div>
+							<div class="panel">
+								<h2 id="tab_2">特点</h2>
+								<p>Flexbox可伸缩的灵活的web页面布局，是未来布局的趋势</p>
+								<ol>
+									<li>Flexbox将复杂难记忆的属性写入简洁明了的样式类中，节省开发时间<br>替代以前一些复杂而易错hacks方法(如使用float进行类似流式布局)<br>单个类快速实现水平&垂直居中<br>轻松实现多栏同高。</li>
+									<li>列偏移、嵌套列、列排序<br>随意调整[栅格]顺序，（bootstrap中的pull与push）比如让main比sidebar提前渲染出来。</li>
+									<li>自动计算间距，实现等宽布局、等距布局</li>
+									<li>支持自动填充剩余宽度或高度<br>支持item按比例分配宽度或高度<br>支持除特定item固定宽度剩余空间其余item按比例分配<br>页面内容无法占满一屏的高度时底栏(footer)总是出现在页面的底部</li>
+									<li>支持item按样式中定义好的优先级在页面中显示</li>
+									<li>丰富的对齐方式，让你像使用photoshop对齐一样操作页面元素位置</li>
+								</ol>
+							</div>
+						</div>
+						<div class="main-docs-section">
+							<h2>栅格系统</h2>
+							<div class="content">
+								<div class="head-text">
+									<span class="title">Flexbox栅格系统</span>
+									<span class="title">操作元素位置像在ps中的对齐一样</span>
+									<p class="tip">基于12个栅格(允许1/2个)布局，与传统栅格化的使用方式类同，使用方法类似Bootstrap</p>
+								</div>
+								<div class="demo flex-v flex-wrap" style="min-height: 260px">
+									<div class="flex-row">
+										<div class="flex-md-1 flex-xs-hide flex-sm-hide">.flex-md-1</div>
+										<div class="flex-md-1 flex-xs-hide flex-sm-hide">.flex-md-1</div>
+										<div class="flex-md-1 flex-xs-hide flex-sm-hide">.flex-md-1</div>
+										<div class="flex-md-1 flex-xs-hide flex-sm-hide">.flex-md-1</div>
+										<div class="flex-md-1 flex-xs-hide flex-sm-hide">.flex-md-1</div>
+										<div class="flex-md-1 flex-xs-hide flex-sm-hide">.flex-md-1</div>
+										<div class="flex-md-1 flex-xs-hide flex-sm-hide">.flex-md-1</div>
+										<div class="flex-md-1 flex-xs-hide flex-sm-hide ">.flex-md-1</div>
+										<div class="flex-md-1 flex-xs-hide flex-sm-hide">.flex-md-1</div>
+										<div class="flex-md-1 flex-xs-hide flex-sm-hide">.flex-md-1</div>
+										<div class="flex-md-1 flex-xs-hide flex-sm-hide">.flex-md-1</div>
+										<div class="flex-md-1 flex-xs-hide flex-sm-hide">.flex-md-1</div>
+									</div>	
+									<div class="flex-row">
+										<div class="flex-md-6 flex-order-2">flex-md-6 flex-order-2</div>
+										<div class="flex-md-6 flex-order-1">flex-md-6 flex-order-1</div>
+										</div>
+									<div class="flex-row flex-around" style="width: 100%">
+										<div class="flex-md-4">flex-md-4 flex-around</div>
+										<div class="flex-md-1_2">0.5</div>
+										<div class="flex-md-1_2">0.5</div>
+										<div class="flex-md-1_2">0.5</div>
+										<div class="flex-md-1_2">0.5</div>
+										<div class="flex-md-4">flex-md-4 flex-around</div>
+									</div>
+									<div class="flex-row flex-between" style="width: 100%">
+										<div class="flex-md-4">flex-md-4 flex-between</div>
+										<div class="flex-md-1_2">0.5</div>
+										<div class="flex-md-1_2">0.5</div>
+										<div class="flex-md-1_2">0.5</div>
+										<div class="flex-md-1_2">0.5</div>
+										<div class="flex-md-4">flex-md-4 flex-between</div>
+									</div>
+									<div class="flex-row flex-between" style="width: 100%">
+										<div class="flex-md-3">flex-md-3</div>
+										<div class="flex-md-3">flex-md-3</div>
+										<div class="flex-md-2">flex-md-2</div>
+										<div class="flex-md-2">flex-md-2</div>
+										<div class="flex-md-2">flex-md-2</div>
+									</div>
+								</div>
+							</div>
+							<div class="content">
+								<div class="head-text">
+									<span class="title">flex-middle 垂直居中</span>
+									<span class="title">flex-center 水平居中</span>
+									<p class="tip">这两个class应用在[容器]上时，所有子flex-item都会垂直或水平居中。也可以单独应用在[栅格]上，使特定栅格居中对齐。</p>
+								</div>
+								<div class="demo flex-column flex-middle flex-center" style="min-height: 160px">
+									<div class="flex-md-4" style="margin-bottom: 10px">无论是多行还是单行，都可以水平居中</div>
+									<div class="flex-md-4">	无论是多行还是单行，都可以垂直居中</div>
+								</div>
+							</div>
+							<div class="content">
+								<div class="head-text">
+									<span class="title">.flex-wrap 允许换行</span>
+									<span class="title">.flex-nowrap 不能换行</span>
+									<p class="tip">nowrap(默认)：不换行，wrap :换行，wrap-reverse :换行倒序排列</p>
+								</div>
+								<span class="title">nowrap</span>
+								<div class="demo flex-row">
+									<div class="flex-md-4">.flex-md-4</div>
+									<div class="flex-md-4">.flex-md-4</div>
+									<div class="flex-md-4">.flex-md-4</div>
+									<div class="flex-md-4">.flex-md-4</div>
+								</div>
+								<span class="title">wrap</span>
+								<div class="demo flex-row flex-wrap">
+									<div class="flex-md-4">.flex-md-4</div>
+									<div class="flex-md-4">.flex-md-4</div>
+									<div class="flex-md-4">.flex-md-4</div>
+									<div class="flex-md-4">.flex-md-4</div>
+								</div>
+								<span class="title">wrap-reverse</span>
+								<div class="demo flex-row flex-wrap-reverse">
+									<div class="flex-md-4">.flex-md-4</div>
+									<div class="flex-md-4">.flex-md-4</div>
+									<div class="flex-md-4">.flex-md-4</div>
+									<div class="flex-md-4">.flex-md-4</div>
+								</div>
+							</div>
+							<div class="content">
+								<div class="head-text">
+									<span class="title">.flex-grow item的放大属性</span>
+									<span class="title">.flex-shrink item的缩小属性</span>
+									<p class="tip">.flex-grow 属性定义item的放大比例，默认为0，及如果存在剩余空间，也不放大。<br> .flex-shrink 属性定义了item的缩小比例，默认为1，及如果空间不足，该item将缩小</p>
+								</div>
+								<span class="title">.flex-grow item的放大属性</span>
+								<div class="demo flex-row">
+									<div class="flex-md">.flex-grow-1</div>
+									<div class="flex-md flex-grow-2">.flex-grow-2</div>
+									<div class="flex-md">.flex-grow-1</div>
+								</div>
+								<span class="title">.flex-shrink item的缩小属性</span>
+								<div class="demo flex-row">
+									<div class="flex-md-4">.flex-md-4<br>.flex-shrink-1</div>
+									<div class="flex-md-4 flex-shrink-0">.flex-md-4<br>.flex-shrink-0</div>
+									<div class="flex-md-4">.flex-md-4<br>.flex-shrink-1</div>
+									<div class="flex-md-4">.flex-md-4<br>.flex-shrink-1</div>
+								</div>
+							</div>
+							<div class="content">
+								<div class="head-text">
+									<span class="title">列偏移</span>
+									<!-- <span class="title">列排序</span> -->
+									<!-- <span class="title">列嵌套</span> -->
+									<p class="tip">.flex-xs-offset-*, .flex-sm-offset-*, .flex-md-offset-* 设置元素的主轴方向偏移</p>
+								</div>
+								<div class="demo flex-row">
+									<div class="flex-md-4">flex-md-4 flex-offset-4</div>
+									<div class="flex-md-4 flex-md-offset-4" >flex-md-4 flex-offset-4</div>
+								</div>
+								<div class="demo flex-row">
+									<div class="flex-md-3 flex-md-offset-3">flex-md-3 flex-offset-3</div>
+									<div class="flex-md-3 flex-md-offset-3" >flex-md-4 flex-offset-3</div>
+								</div>
+								<div class="demo flex-row">
+									<div class="flex-md-6 flex-md-offset-3" >flex-md-6 flex-offset-3</div>
+								</div>
+							</div>
+							<div class="content">
+								<div class="head-text">
+									<!-- <span class="title">列偏移</span> -->
+									<span class="title">列排序</span>
+									<!-- <span class="title">列嵌套</span> -->
+									<p class="tip">.flex-order-*指定元素的显示优先级及item的排列顺序，数值越小，排列越靠前，默认为0 <br>使用 .flex-md-push-* 和 .flex-md-pull-* 类也可以很容易的改变列（column）的顺序</p>
+								</div>
+								<div class="demo flex-row">
+									<div class="flex-md-3 flex-order-4" style="line-height: 20px;">.flex-md-3.flex-order-4实际位置1</div>
+									<div class="flex-md-3 flex-order-3" style="line-height: 20px;">.flex-md-3.flex-order-3实际位置2</div>
+									<div class="flex-md-3 flex-order-2" style="line-height: 20px;">.flex-md-3.flex-order-2实际位置3</div>
+									<div class="flex-md-3 flex-order-1" style="line-height: 20px;">.flex-md-3.flex-order-1实际位置4</div>
+								</div>
+								<div class="demo flex-row">
+									  <div class="flex-md-9 flex-md-push-3">flex-md-9 flex-md-push-3实际位置在左边</div>
+									  <div class="flex-md-3 flex-md-pull-9">.flex-md-3 .flex-md-pull-9</div>
+								</div>
+							</div>
+							<div class="content">
+								<div class="head-text">
+									<!-- <span class="title">列偏移</span> -->
+									<!-- <span class="title">列排序</span> -->
+									<span class="title">列嵌套</span>
+									<p class="tip">列嵌套让让元素布局更灵活，多样</p>
+								</div>
+								<div class="demo flex-row flex-center flex-middle">
+									<div class="demo flex-row flex-md-9 flex-center flex-middle" style="font-size: 14px;  height: 120px;"">外层： .flex-md-9
+									<div class="flex-row flex-md-10 flex-center" style="padding: 0px;">
+										<div class="flex-md-6">里层左 .flex-md-6</div>
+										<div class="flex-md-6">里层右 .flex-md-6</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<h2>对齐</h2>
+							<h6>作用在[容器]上，对其内的元素item对齐；.flex-*-alone单独作用于单个item使其与其他item样式不同</h6>
+							<div class="content">
+								<div class="head-text">
+									<span class="title">.flex-left / .flex-*-left 左对齐</span>
+									<span class="title">.flex-right / .flex-*-right 右对齐</span>
+									<p class="tip">.flex-left / .flex-l .flex-start   左对齐.flex-center / .flex-r .flex-end  右对齐 <br>加在[容器]上时，item会在主轴上靠左对齐或靠右对齐</p>
+								</div>
+								<div class="demo flex-row flex-left" style="margin-bottom: 10px;">
+									<div class="flex-md-3">左对齐</div>
+									<div class="flex-md-3">左对齐</div>
+									<div class="flex-md-3">左对齐</div>
+								</div>
+								<div class="demo flex-row flex-right" style="margin-bottom: 10px;">
+									<div class="flex-md-3">右对齐</div>
+									<div class="flex-md-3">右对齐</div>
+									<div class="flex-md-3">右对齐</div>
+								</div>
+								<div class="demo flex-column flex-left">
+										<div class="flex-md-3">左对齐</div>
+										<div class="flex-md-6 flex-right-alone">右对齐</div>
+										<div class="flex-md-3">左对齐</div>
+								</div>
+								<div class="demo flex-column flex-left">
+										<div class="flex-md-3 flex-right-alone">右对齐</div>
+										<div class="flex-md-6">左对齐</div>
+										<div class="flex-md-3 flex-right-alone">右对齐</div>	
+								</div>
+							</div>
+							<div class="content">
+								<div class="head-text">
+									<span class="title">.flex-top / .flex-t 顶部对齐</span>
+									<span class="title">.flex-bottom / .flex-b 底部对齐</span>
+									<p class="tip"> .flex-top / .flex-item-top 顶部对齐  .flex-bottom / .flex-item-bottom 底部对齐<br>加在[容器]上时，item会在交叉轴上顶部或底部对齐</p>
+								</div>
+								<div class="demo flex-row flex-top" style="margin-bottom: 10px; min-height: 60px;">
+									<div class="flex-md-3">顶部对齐</div>
+									<div class="flex-md-3 flex-item-bottom">底部对齐</div>
+									<div class="flex-md-3">顶部对齐</div>
+								</div>
+								<div class="demo flex-row flex-top" style="margin-bottom: 10px; min-height: 60px;">
+									<div class="flex-md-3 flex-item-bottom">底部对齐</div>
+									<div class="flex-md-3">顶部对齐</div>
+									<div class="flex-md-3 flex-item-bottom">底部对齐</div>
+								</div>
+								<div class="demo flex-column flex-middle flex-top" style="min-height: 160px;">
+										<div class="flex-md-3">顶部对齐</div>
+										<div class="flex-md-3">顶部对齐</div>
+										<div class="flex-md-3 flex-item-bottom">底部对齐</div>
+								</div>
+								<div class="demo flex-v flex-middle flex-top" style="min-height: 160px;">
+										<div class="flex-md-3">顶部对齐</div>
+										<div class="flex-md-3 flex-item-bottom">底部对齐</div>
+										<div class="flex-md-3 flex-item-bottom">底部对齐</div>	
+								</div>
+							</div>
+							<div class="content">
+								<div class="head-text">
+									<span class="title">.flex-between 等宽对齐</span>
+									<span class="title">.flex-around  分散排列</span>
+									<p class="tip">.flex-between 等宽对齐自动调整栅格间距，保持两边间距相同      .flex-around  分散排列与等宽对齐相似略有不同<br></p>
+								</div>
+								<div class="demo flex-row flex-between" style="margin-bottom: 10px;">
+									<div class="flex-md-2">等宽对齐</div>
+									<div class="flex-md-2">等宽对齐</div>
+									<div class="flex-md-2">等宽对齐</div>
+									<div class="flex-md-2">等宽对齐</div>
+								</div>
+								<div class="demo flex-row flex-around" style="margin-bottom: 10px;">
+									<div class="flex-md-2">分散排列</div>
+									<div class="flex-md-2">分散排列</div>
+									<div class="flex-md-2">分散排列</div>
+									<div class="flex-md-2">分散排列</div>
+								</div>
+								<div class="demo flex-column flex-middle flex-between" style="margin-bottom: 10px; min-height: 240px;">
+									<div class="flex-md-4">等宽对齐</div>
+									<div class="flex-md-4">等宽对齐</div>
+									<div class="flex-md-4">等宽对齐</div>
+									<div class="flex-md-4">等宽对齐</div>
+								</div>
+								<div class="demo flex-v flex-middle flex-around" style="margin-bottom: 10px; min-height: 240px">
+									<div class="flex-md-4">分散排列</div>
+									<div class="flex-md-4">分散排列</div>
+									<div class="flex-md-4">分散排列</div>
+									<div class="flex-md-4">分散排列</div>
+								</div>
+							</div>
+							<h2>响应式</h2>
+							<h6>调整你的浏览器大小，或者用其他设备打开页面，都可以测试这些响应式工具类</h6>
+							<div class="content">
+								<div class="head-text">
+									<span class="title">.flex-xs-*</span>
+									<p class="tip">
+										同一元素在(&rg;768px)超小屏幕上的显示宽度[栅格]
+									</p>
+									<span class="title">.flex-sm-*</span>
+									<p class="tip">
+										同一元素在(&rg;992px)小屏幕平板上的显示宽度[栅格]
+									</p>
+									<span class="title">.flex-md-*</span>
+									<p class="tip">
+										同一元素在(&rg;1200px)中等屏幕桌面上的显示宽度[栅格]
+									</p>
+									<span class="title">.flex-lg-*</span>
+									<p class="tip">
+										同一元素在(&lg;1200px)大屏幕桌面上的显示宽度[栅格]
+									</p>
+								</div>
+								<div class="demo flex-row flex-left" style="margin-bottom: 10px;">
+									<div class="flex-xs-12 flex-sm-12 flex-md-12 flex-lg-12">.flex-xs-12 .flex-sm-12 .flex-md-12 .flex-lg-12</div>
+								</div>
+								<div class="demo flex-row flex-left" style="margin-bottom: 10px;">
+									<div class="flex-xs-12 flex-sm-6 flex-md-4 flex-lg-3">.flex-xs-12 .flex-sm-6 .flex-md-4 .flex-lg-3 调整浏览器窗口试试</div>
+								</div>
+							</div>
+							<h6>作用在[栅格]上，针对不同屏幕尺寸隐藏或显示页面内容</h6>
+							<div class="content">
+								<div class="head-text">
+									<span class="title">在...上可见</span>
+									<span class="title">在...上隐藏</span>
+									<p class="tip">
+										超小屏幕手机 (&lg;768px)小屏幕平板 (≥768px)中等屏幕桌面 (≥992px)大屏幕桌面 (≥1200px)
+									</p>
+								</div>
+								<span class="tip">在...上可见</span>
+								<div class="demo flex-row flex-left" style="margin-bottom: 10px;">
+									<div class="flex-md-3 flex-sm-hide flex-md-hide flex-lg-hide">超小屏幕可见</div>
+									<div class="flex-md-3 flex-sm-hide flex-md-hide flex-lg-hide">小屏幕可见</div>
+									<div class="flex-md-3 flex-xs-hide flex-md-hide flex-lg-hide">中等屏幕可见</div>
+									<div class="flex-md-3 flex-xs-hide flex-sm-hide flex-md-hide">大屏幕可见</div>
+								</div>
+								<span class="tip">在...上隐藏</span>
+								<div class="demo flex-row flex-right" style="margin-bottom: 10px;">
+									<div class="flex-md-3 flex-xs-hide">超小屏幕隐藏</div>
+									<div class="flex-md-3 flex-xs-hide">小屏幕隐藏</div>
+									<div class="flex-md-3 flex-sm-hide">中等屏幕隐藏</div>
+									<div class="flex-md-3 flex-lg-hide">大屏幕隐藏</div>
+								</div>
+								<!-- <div class="demo flex-column flex-left">
+									<div class="flex-md-3">左对齐</div>
+									<div class="flex-md-6 flex-right-alone">右对齐</div>
+									<div class="flex-md-3">左对齐</div>
+								</div>
+								<div class="demo flex-column flex-left">
+									<div class="flex-md-3 flex-right-alone">右对齐</div>
+									<div class="flex-md-6">左对齐</div>
+									<div class="flex-md-3 flex-right-alone">右对齐</div>	
+								</div> -->
+							</div>
+						</div>
+						<div class="main-docs-section">
+							<h2 id="tab_3">CSS Flex语法</h2>
+						</div>
+						<div class="main-docs-section">
+							<h2 id="tab_4">实例</h2>
+						</div>
+						<div class="main-docs-section">
+							<h2 id="tab_5">CSS Flex布局</h2>
+						</div>
+						<div class="main-docs-section">
+							<h2 id="tab_6">感谢</h2>
+							<div class="content">
+								<div class="head-text">
+									<span class="title">阮一峰的网络日志 - Flex 布局教程：语法篇</span>
+									<p class="tip">
+										教程很详细的介绍了css flex的语法、属性、使用如果你想了解更多关于flex的使用推荐阮一峰的<a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html">Flex 布局教程</a><br>&nbsp;&nbsp;&nbsp;&nbsp;查看更多关于flex的实例推荐阮一峰的<a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_block">Flex 布局教程 - 实例篇</a>
+									</p>
+									<span class="title">弹性盒子模型简介 - 张鑫旭</span>
+									<p class="tip">
+										文章中的是兼容式早期的语法，微信内置浏览器中使用的是这种早期的写法<br>文章写的风趣幽默，通俗易懂，只要你看了就很容易理解<a class="btn-a" href="http://www.zhangxinxu.com/wordpress/?p=1338" target="_block">直接到达</a>
+									</p>
+									<span class="title">Coffcer的flex栅格布局库</span>
+									<p class="tip">
+										Flexbox弹性布局库是参照大神的布局库而做<br>本页的demo也是以Flex-Layout使用教程为模板的<br>Flex-Layout 基于flex的栅格布局库 flex-layout <a href="https://github.com/Coffcer/flex-layout" target="_block" style="text-decoration: underline;">https://github.com/Coffcer/flex-layout</a>
+									</p>
+									<span class="title">谢谢以上大神们写的文章</span>
+									<p class="tip">
+										他们的文章能让大家快速的理解css flex
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="flex-md-3">
+						<div class="flex flex-v title-sidebar flex-xs-hide flex-sm-hide">
+							<ul class="nav-sidebar">
+								<li><a href="#tab_1">Flexbox概述</a></li>
+								<li><a href="#tab_2">Flexbox特点</a></li>
+								<li><a href="#tab_3">Flexbox用法</a></li>
+								<li><a href="#tab_4">CSSFlex布局语法</a></li>
+								<li><a href="#tab_5">实例</a></li>
+								<li><a href="#tab_6">感谢</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- section3 -->
+		<section id="sec3">
+			
+		</section>
+		<!-- section4 -->
+		<section id="sec4">
+			
+		</section>
+	</main>
+	<footer class="flex flex-center">
+		<p>Desing by zhangyz</p>
+		<a href="http://github.com/Justisit/flex-box" style="margin-right: 50px;color: #555;">Github</a>
+
+	</footer>
+	<div id="backtotop" style="display: block;" class="active">       
+      		<a class="to-top-btn sscroll" href="#"><i class="fa fa-angle-double-up"></i></a>
+ 	 </div>
+</body>
+</html>
